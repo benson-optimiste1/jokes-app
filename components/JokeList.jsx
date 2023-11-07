@@ -11,18 +11,18 @@ export default function JokeList() {
     useEffect(() => {
         fetch('https://api.sampleapis.com/jokes/goodJokes')
             .then(res => res.json())
-            .then(shuffleJokes)
+            .then(setJokes)
             .catch(alert)
+            .finally(shuffleJokes)
     }, [])
 
-const shuffleJokes = (array) => {
-    for (let i = array.length -1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        [array[i], array[j]] = [array[j], array[i]]
+    const shuffleJokes = (array) => {
+        const j = Math.floor(Math.random() * jokes.length)
+        setCurrentJoke(j)
     }
     
-    setJokes(array)
-}
+    
+
 
     const nextJoke = () => {
         if (currentJoke < jokes.length - 1) {
