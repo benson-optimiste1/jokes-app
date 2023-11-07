@@ -16,9 +16,11 @@ export default function JokeList() {
             .finally(shuffleJokes)
     }, [])
 
-    const shuffleJokes = (array) => {
+    const shuffleJokes = () => {
+        if(jokes){
         const j = Math.floor(Math.random() * jokes.length)
         setCurrentJoke(j)
+        }
     }
     
     
